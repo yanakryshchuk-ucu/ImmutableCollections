@@ -14,8 +14,7 @@ public class Queue {
     public Object peek() {
         try {
             return array.getFirst();
-        }
-        catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new NoSuchElementException(e.getMessage());
         }
     }
@@ -25,8 +24,7 @@ public class Queue {
             Object res = array.getFirst();
             array = array.removeFirst();
             return res;
-        }
-        catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new NoSuchElementException(e.getMessage());
         }
     }

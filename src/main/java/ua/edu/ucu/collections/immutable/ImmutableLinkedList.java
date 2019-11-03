@@ -1,7 +1,5 @@
 package ua.edu.ucu.collections.immutable;
 
-import java.util.NoSuchElementException;
-
 public class ImmutableLinkedList implements ImmutableList {
 
     private final Node head;
@@ -28,10 +26,9 @@ public class ImmutableLinkedList implements ImmutableList {
             }
         }
 
-        private void setNext(Node next) {
-            next.next = this.next;
-            this.next = next;
-
+        private void setNext(Node newNext) {
+            newNext.next = this.next;
+            this.next = newNext;
         }
     }
 
@@ -44,19 +41,18 @@ public class ImmutableLinkedList implements ImmutableList {
     }
 
     private static Node getNodeByIndex(Node head, int index) {
-        if (head == null){
+        if (head == null) {
             throw new IndexOutOfBoundsException("Data is empty!");
         }
         Node pointer = head;
         for (int i = 0; i != index; i++) {
             pointer = pointer.next;
-            if (pointer == null){
+            if (pointer == null) {
                 throw new IndexOutOfBoundsException("Out of boundaries");
             }
         }
         return pointer;
     }
-
 
     public ImmutableLinkedList addFirst(Object e) {
         return add(0, e);
@@ -82,7 +78,6 @@ public class ImmutableLinkedList implements ImmutableList {
         return remove(size() - 1);
     }
 
-
     @Override
     public ImmutableLinkedList add(Object e) {
         return add(size(), e);
@@ -91,10 +86,10 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public ImmutableLinkedList add(int index, Object e) {
         if (index < 0) {
-            throw new IndexOutOfBoundsException("Index should not be negative!");
+            throw new IndexOutOfBoundsException("Index is negative!");
         }
         if (index > size()) {
-            throw new IndexOutOfBoundsException("Index is bigger than length of array!");
+            throw new IndexOutOfBoundsException("Index out of range!");
         }
         if (this.head == null) {
             return new ImmutableLinkedList(new Node(e));
@@ -135,16 +130,16 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public ImmutableLinkedList remove(final int index) {
         if (index < 0) {
-            throw new IndexOutOfBoundsException("Index should not be negative!");
+            throw new IndexOutOfBoundsException("Index is negative!");
         }
         if (index >= size()) {
-            throw new IndexOutOfBoundsException("Index is bigger than length of array!");
+            throw new IndexOutOfBoundsException("Index out of range!");
         }
 
         if (size() == 1) {
             return new ImmutableLinkedList();
         } else {
-            final Node newHead = this.head.copy();
+            Node newHead = this.head.copy();
             if (index == 0) {
                 return new ImmutableLinkedList(newHead.next);
             } else { //remove element from new list
@@ -158,10 +153,10 @@ public class ImmutableLinkedList implements ImmutableList {
     @Override
     public ImmutableLinkedList set(int index, Object e) {
         if (index < 0) {
-            throw new IndexOutOfBoundsException("Index should not be negative!");
+            throw new IndexOutOfBoundsException("Index is negative!");
         }
         if (index >= size()) {
-            throw new IndexOutOfBoundsException("Index is bigger than length of array!");
+            throw new IndexOutOfBoundsException("Index out of range!");
         }
 
         Node newHead = this.head.copy();
@@ -228,7 +223,7 @@ public class ImmutableLinkedList implements ImmutableList {
             Node current = this.head;
             while (current != null) {
                 res.append(current.data);
-                if (current.next != null){
+                if (current.next != null) {
                     res.append(", ");
                 }
                 current = current.next;
