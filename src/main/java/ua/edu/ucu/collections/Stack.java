@@ -14,12 +14,10 @@ public class Stack {
     public Object peek() {
         try {
             return array.getLast();
-        }
-        catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new NoSuchElementException(e.getMessage());
         }
     }
-
 
 
     public Object pop() {
@@ -27,8 +25,7 @@ public class Stack {
             Object res = array.getLast();
             array = array.removeLast();
             return res;
-        }
-        catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new NoSuchElementException(e.getMessage());
         }
     }
