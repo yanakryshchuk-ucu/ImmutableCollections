@@ -56,7 +56,7 @@ public class ImmutableArrayList implements ImmutableList {
         if (c == null || c.length == 0) {
             return this;
         }
-        final Object[] newArr = new Object[size() + c.length];
+        Object[] newArr = new Object[size() + c.length];
         if (index > 0) {
             System.arraycopy(this.items, 0, newArr, 0, index);
         }
