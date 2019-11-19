@@ -11,9 +11,8 @@ public class ImmutableLinkedListTest {
 
     @Before
     public void setUp() throws Exception {
-        fullList = new ImmutableLinkedList();
         Object[] array = {1, 2, 3, 4, 5};
-        fullList = fullList.addAll(array);
+        fullList = new ImmutableLinkedList().addAll(array);
         emptyList = new ImmutableLinkedList();
     }
 
